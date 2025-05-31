@@ -5,11 +5,11 @@
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install dependencies.
 
 ```bash
+## If pip install does not work make sure you install it manually and uv --version should works
 pip install uv
 make venv
 source .venv/bin/activate
-make install
-export SOURCE_DIR=~/civis-ai-backend/src
+export SOURCE_DIR=$(pwd)/src
 ```
 
 ## Usage
@@ -55,15 +55,14 @@ $ alembic upgrade head
 ## Run Fast API Application localhost server.
 
 ```
-export PYTHONPATH=/home/user/civi-backend-policy-analyser/src:$PYTHONPATH
-cd src;
-python -m civis_backend_policy_analyser.api.app
+export PYTHONPATH=$(pwd)/src:$PYTHONPATH
+make run
 ```
 
 ## Test
 
 ```
-export PYTHONPATH=~/civis-ai-backend/src
+export PYTHONPATH=$(pwd)/src:$PYTHONPATH
 make test
 make cov
 ```

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-SHELL := /usr/bin/bash
-VIRTUAL_ENV = .civis
+SHELL := $(shell which bash)
+VIRTUAL_ENV = .venv
 
 ##@ Utility
 .PHONY: help
@@ -9,7 +9,7 @@ help:  ## Display this help
 
 .PHONY: venv
 venv: uv
-	uv venv --python 3.12.3 ${VIRTUAL_ENV}; \
+	uv venv --python 3.13.3 ${VIRTUAL_ENV}; \
 	source ${VIRTUAL_ENV}/bin/activate; \
 	uv lock; \
 	make install && make dev; \
@@ -50,3 +50,7 @@ fix:  ## Fix lint errors
 .PHONY: cov
 cov: ## Run tests with coverage
 	uv run pytest --cov=src --cov-report=term-missing
+
+.PHONY: run
+run:  ## Run the FastAPI app
+	uv run uvicorn civis_backend_policy_analyser.api.app:app --reload
