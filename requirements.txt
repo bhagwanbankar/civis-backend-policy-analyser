@@ -74,7 +74,6 @@ typer==0.16.0
 typing-extensions==4.13.2
     # via
     #   alembic
-    #   anyio
     #   fastapi
     #   pydantic
     #   pydantic-core

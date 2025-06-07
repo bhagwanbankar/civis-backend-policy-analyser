@@ -17,6 +17,10 @@ class BaseView:
         self.db_session = db_session
         self.select = select(self.model)
 
+
+    async def get(self, id: int):
+        return await self.db_session.get(self.model, id)
+    
     async def all(self):
         try:
             # 1 Fetch all records from the defined SqlAlchemy Model.

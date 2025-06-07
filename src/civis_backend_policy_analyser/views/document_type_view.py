@@ -1,6 +1,6 @@
 from civis_backend_policy_analyser.views.base_view import BaseView
 from civis_backend_policy_analyser.models.document_type import DocumentType
-from civis_backend_policy_analyser.schemas.document_type_schema import DocumentTypeSchema
+from civis_backend_policy_analyser.schemas.document_type_schema import DocumentTypeCreate, DocumentTypeSchema, DocumentTypeUpdate
 
 
 class DocumentTypeView(BaseView):
@@ -16,3 +16,5 @@ class DocumentTypeView(BaseView):
     """
     model = DocumentType
     schema = DocumentTypeSchema
+    create_schema = DocumentTypeCreate
+    update_schema = DocumentTypeUpdate

@@ -54,3 +54,20 @@ cov: ## Run tests with coverage
 .PHONY: run
 run:  ## Run the FastAPI app
 	uv run uvicorn civis_backend_policy_analyser.api.app:app --reload
+
+.PHONY: db-up db-down db-logs db-psql
+
+db-up:
+	docker compose up -d
+
+db-down:
+	docker compose down
+
+db-logs:
+	docker compose logs -f postgres
+
+db-psql:
+	docker exec -it my-postgres psql -U postgres -d mydatabase
+
+seed:
+	poetry run python seed_data.py

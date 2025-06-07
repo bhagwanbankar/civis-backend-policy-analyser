@@ -66,3 +66,18 @@ export PYTHONPATH=$(pwd)/src:$PYTHONPATH
 make test
 make cov
 ```
+
+## Postgress Commands
+
+### Connect to your database.
+```
+psql -U <username> -d <database_name>
+```
+### Command list tables in the current schema.
+```
+\dt
+```
+ ### Command shows table schema
+ ```
+ \d+ <table_name>
+ ```

@@ -1,14 +1,29 @@
-from typing import List
-
-from civis_backend_policy_analyser.schemas.base_model import BaseModelSchema
-from civis_backend_policy_analyser.schemas.assessment_area_schema import AssessmentAreaSchema
+from datetime import datetime
+from pydantic import BaseModel
 
 
-class DocumentTypeSchema(BaseModelSchema):
-    id: int
-    document_type_name: str
+class DocumentTypeBase(BaseModel):
+    doc_type_name: str
+    description: str
+    created_by: str
+    updated_by: str
 
-    # assessment_areas: List[AssessmentAreaSchema]
 
-    class Config:
-        orm_mode = True
+class DocumentTypeCreate(DocumentTypeBase):
+    pass
+
+
+class DocumentTypeUpdate(BaseModel):
+    doc_type_name: str | None = None
+    description: str | None = None
+    updated_by: str | None = None
+
+
+class DocumentTypeSchema(DocumentTypeBase):
+    doc_type_id: int
+    created_on: datetime
+    updated_on: datetime
+
+    model_config = {
+        "from_attributes": True
+    }
